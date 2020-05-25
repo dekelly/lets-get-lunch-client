@@ -1,0 +1,35 @@
+<mat-card class="signup-page">
+    <mat-card-title>Sign up</mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="signupForm" (ngSubmit)="signup()" class="signup-form">
+
+            <mat-form-field>
+
+                <input matInput type="username"
+                       placeholder="Username"
+                       formControlName="username">
+
+            </mat-form-field>
+
+            <mat-form-field>
+
+                <input matInput type="password"
+                       placeholder="Password"
+                       formControlName="password">
+
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Dietary Preferences:</mat-label>
+                <mat-select formControlName="dietprefs" multiple>
+                    <mat-option *ngFor="let pref of dietPreferences" [value]="pref">{{pref}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary"
+                    type="submit"
+                    [disabled]="!signupForm.valid">Signup now</button>
+
+        </form>
+    </mat-card-content>
+</mat-card>

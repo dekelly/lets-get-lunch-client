@@ -1,4 +1,5 @@
 # LetsGetLunch
+This is an updated version of the original project taken from the book 'The Angular Tutorial' by Adam Morgan. The original code can be found at the following Github repository `https://github.com/theangulartutorial`.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.4.
 
