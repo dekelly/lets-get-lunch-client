@@ -6,7 +6,7 @@ import { FormBuilder } from '@angular/forms';
 
 import { SignupComponent } from './signup.component';
 import { AuthService } from '../services/auth/auth.service';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 
 
 class MockAuthService {
@@ -71,7 +71,16 @@ describe('SignupComponent', () => {
     expect(component.signupForm.controls['password'].errors).toBeTruthy();
   });
 
-  it('should submit form with valid inputs', () => {
+  it('form should fail validation with invalid user details', () => {
+    component.signupForm.controls['username'].setValue('user');
+    component.signupForm.controls['password'].setValue('pwd');
+
+    expect(component.signupForm.controls['password'].errors).toBeTruthy();
+    expect(component.signupForm.valid).toBeFalsy();
+
+  });
+
+  it('should submit form with valid user details', () => {
     component.signupForm.controls['username'].setValue('admin');
     component.signupForm.controls['password'].setValue('s3cr3t');
     component.signupForm.controls['dietprefs'].setValue(['BBQ', 'Burger']);
@@ -88,8 +97,7 @@ describe('SignupComponent', () => {
       password: 's3cr3t',
       dietPreferences: ['BBQ', 'Burger']
     });
-
-
   });
+
 
 });

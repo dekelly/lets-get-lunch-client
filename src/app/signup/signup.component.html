@@ -4,24 +4,22 @@
         <form [formGroup]="signupForm" (ngSubmit)="signup()" class="signup-form">
 
             <mat-form-field>
-
                 <input matInput type="username"
                        placeholder="Username"
-                       formControlName="username">
-
+                       [formControl]="signupForm.controls.username">
+                <mat-error *ngIf="signupForm.get('username').hasError('required')">Username is <strong>required</strong></mat-error>
             </mat-form-field>
 
-            <mat-form-field>
-
+            <mat-form-field hintLabel="Min 6 characters">
                 <input matInput type="password"
                        placeholder="Password"
-                       formControlName="password">
-
+                       [formControl]="signupForm.controls.password">
+                <mat-error *ngIf="signupForm.get('password').hasError('minLength')">Password must be > <strong>5</strong> characters</mat-error>
             </mat-form-field>
 
             <mat-form-field>
                 <mat-label>Dietary Preferences:</mat-label>
-                <mat-select formControlName="dietprefs" multiple>
+                <mat-select [formControl]="signupForm.controls.dietprefs" multiple>
                     <mat-option *ngFor="let pref of dietPreferences" [value]="pref">{{pref}}</mat-option>
                 </mat-select>
             </mat-form-field>
